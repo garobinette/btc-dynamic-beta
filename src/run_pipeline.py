@@ -149,7 +149,7 @@ def run_multi_factor(start="2020-01-01", end=None, export_dir=None):
         os.makedirs(export_dir, exist_ok=True)
         result.betas.to_csv(f"{export_dir}/kalman_betas_multifactor.csv")
         regime_history.regimes.to_csv(f"{export_dir}/regimes.csv")
-        with open(f"{export_dir}/narrative_report.txt", "w") as f:
+        with open(f"{export_dir}/narrative_report.txt", "w", encoding="utf-8") as f:
             f.write(report.full_text)
         print(f"\n  Exported → {export_dir}/")
 
@@ -244,7 +244,7 @@ def run_full_pipeline(start="2020-01-01", end=None, export_dir=None):
         features.correlations.to_csv(f"{export_dir}/correlations.csv")
         features.spreads.to_csv(f"{export_dir}/spreads.csv")
 
-        with open(f"{export_dir}/narrative_report.txt", "w") as f:
+        with open(f"{export_dir}/narrative_report.txt", "w", encoding="utf-8") as f:
             f.write(report.full_text)
 
         summary = {
@@ -278,7 +278,7 @@ def run_full_pipeline(start="2020-01-01", end=None, export_dir=None):
             "exposure_per_1M": risk_report.exposure_summary,
             "sizing": risk_report.sizing,
         }
-        with open(f"{export_dir}/full_summary.json", "w") as f:
+        with open(f"{export_dir}/full_summary.json", "w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2)
 
         print(f"\n  Exported full pipeline → {export_dir}/")
